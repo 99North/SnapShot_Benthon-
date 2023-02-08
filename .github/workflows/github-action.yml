@@ -1,0 +1,20 @@
+name: Github Action for React App
+
+on: 
+  push:
+    branches:
+       - "main"   # on which branch we need to push it
+
+jobs:
+ build: 
+   runs-on: ubuntu: latest   # which os we want to run
+   strategy:
+    matrix: 
+     node-version: [18.x] #node version required to build
+
+   steps:
+    - uses: actions/checkout@v1
+    - run: npm install   # to download all dependecies
+    - run npm run build  # to build the app
+    - run: npm install   # for unint test case checking
+
